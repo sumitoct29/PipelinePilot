@@ -1,0 +1,19 @@
+name: Create Azure Resource Group via PowerShell
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-rg:
+    runs-on: self-hosted
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Azure Resource Group
+        shell: pwsh
+        run: |
+          New-AzResourceGroup -Name "rg-myproject-dev" -Location "eastus"
