@@ -1,4 +1,4 @@
-name: Create Azure Resource Group via PowerShell
+name: Create Azure Resource Group
 
 on:
   workflow_dispatch:
@@ -13,7 +13,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Create Azure Resource Group
-        shell: pwsh
+      - name: Create Azure Resource Group via Azure CLI
         run: |
-          New-AzResourceGroup -Name "rg-myproject-dev" -Location "eastus"
+          az group create --name rg-myproject-dev --location eastus
